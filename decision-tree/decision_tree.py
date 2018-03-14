@@ -70,7 +70,7 @@ class DecisionTree(object):
 		return self.labelCodes[labelCodesCount.index(max(labelCodesCount))]
 
 	def getInformationGain(self, sampleIds, attributeId):
-		gain = self.entropy
+		gain = self.getEntropy(sampleIds)
 		attributeVals = []
 		attributeValsCount = []
 		attributeValsIds = []
@@ -156,7 +156,7 @@ class DecisionTree(object):
 				print(root.value)
 				if root.childs:
 					for child in root.childs:
-						print('({})'.format(child.value), end=' ')
+						print('({})'.format(child.value))
 						roots.append(child.next)
 				elif root.next:
 					print(root.next)
