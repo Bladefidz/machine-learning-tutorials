@@ -1,0 +1,35 @@
+# x is examples in training set
+# y is set of attributes
+# labels is labeled data
+# Node is a class which has properties values, childs, and next
+# root is top node in the decision tree
+
+# Declare:
+x = # Multi dimensional arrays
+y = # Column names of x
+labels = # Classification values, for example {0, 1, 0, 1}
+         # correspond that row 1 is false, row 2 is true, and so on
+root = ID3(x, y, label, root)
+
+# Define:
+ID3(x, y, label, node)
+  initialize node as a new node instance
+  if all rows in x only have single classification c, then:
+    insert label c into node
+    return node
+  if x is empty, then:
+    insert dominant label in x into node
+    return node
+  bestAttr is an attribute with maximum information gain in x
+  insert attribute bestAttr into node
+  for vi in values of bestAttr:
+    // For example, Outlook has three values: Sunny, Overcast, and Rain
+    insert value vi as branch of node
+    create viRows with rows that only contains value vi
+    if viRows is empty, then:
+      this node branch ended by a leaf with value is dominant label in x
+    else:
+      newY = list of attributes y with bestAttr removed
+      nextNode = next node connected by this branch
+      nextNode = ID3(viRows, newY, label, nextNode)
+  return node
