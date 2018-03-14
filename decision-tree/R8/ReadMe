@@ -1,0 +1,86 @@
+********************************************************************************
+*									       *
+*  Copyright J.R. Quinlan, 1987, 1988, 1989, 1990, 1991, 1992.  This software  *
+*  may not be distributed in any form without permission of the copyright      *
+*  holder.								       *
+*									       *
+********************************************************************************
+
+
+PLEASE READ THE FILE CALLED "LEGAL".  ALSO, NOTE THAT C4.5 IS NOT SUPPORTED.
+
+
+The C4.5 induction system
+-------------------------
+
+The C4.5 system consists of four principal programs:
+
+	1)  the decision tree generator ('c4.5'),
+	2)  the production rule generator ('c4.5rules'),
+	3)  the decision tree interpreter ('consult'), and
+	4)  the production rule interpreter ('consultr').
+
+This release also contains stuff that may be helpful in running experiments:
+
+	5)  a csh shell script for cross-validation ('xval.sh'), and
+	6)  two ancillary programs ('xval-prep' and 'average').
+
+There is a Unix-style (brief) manual entry for the main programs and for
+their verbose output mode.  A better guide to using the system is provided in
+my book, 'C4.5: Programs for Machine Learning', Morgan Kaufmann 1992.
+
+[Note: changes since the book was published are recorded in the file
+Modifications in the Src directory.]
+
+Installation
+------------
+
+The system has been targeted to Berkeley BSD4.3.  Some other environments
+(e.g. SystemV) may require the use of additional libraries etc; if you
+have any trouble compiling the system, look at the comments in the Makefile.
+In particular, if you are running in an environment other than Berkeley BSD4.3
+you may need to search additional libraries, e.g. for the random number
+generator 'random'.  This requires the addition of loader instructions of the
+form -l* after '-lm'; you might try '-lbsd'; if this doesn't work, consult
+your local Unix guru.
+
+To create the executable binary files, go into the 'Src' directory by typing:
+
+	cd Src
+
+and type:
+
+	make all
+
+This will create the binary files 'c4.5', 'c4.5rules', 'consult', 'consultr',
+'xval-prep' and 'average'.  These, together with the shell script, can be
+moved into your installation's directory for local software, e.g.
+'/usr/local/bin' by typing:
+
+	mv c4.5 c4.5rules consult consultr xval-prep average xval.sh /usr/local/bin
+
+The object files created during compilation may be removed to save space by
+typing:
+
+	rm *.o
+
+In the 'Doc' directory, there is a manual entry file for each of the programs,
+as well as the files 'verbose.1' and 'verbrules.1' which explain the verbose
+output produced by 'c4.5' and 'c4.5rules' respectively.  These can be installed
+in your local manual by moving them to your installation's manual directory for
+volume 1, usually '/usr/man/man1' by typing, for instance:
+
+	cd ../Doc
+	mv *.1 /usr/man/man1
+
+(You may need superuser privileges to put files in this directory.)
+
+Examples
+--------
+
+The directory 'Data' contains some sample datasets.  Many interesting data
+collections are maintained by the University of California, Irvine, in a
+data repository.  For more information on how to access files from this
+repository, send email to
+
+	ml-repository@ics.uci.edu
