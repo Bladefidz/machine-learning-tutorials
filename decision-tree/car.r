@@ -6,7 +6,7 @@ install.packages('mlr')
 # Importing the dataset
 dataset = read.csv('dataset/car-evaluation/car.csv')
 
-# Analyzing data
+# Analyzing attribute distribution of each criteria
 library(ggplot2)
 # Plot buying histogram
 ggplot(data=dataset,
@@ -48,29 +48,29 @@ ggplot(data=dataset,
 # Encode label as factor
 dataset$car = factor(dataset$car, levels = c('unacc', 'acc', 'good', 'vgood'))
 
-# Split label set into training set and test set with ratio 75:25
+# Apply randomized splitting data set into training set and test set
 library(caTools)
 split = sample.split(dataset$car, SplitRatio = 0.75)
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
 
-# Aplly C50 algorithm
+# Apply C50 algorithm on training set
 library(C50)
 decTree = C5.0(formula = car ~ ., data = training_set)
+decTree
 
-# Making prediction using model created by C50 algorithm
+# Using test set to predict classification accuracy
 y_pred = predict(decTree, newdata = test_set[-7], type = 'class')
 
 # Plot the tree
 plot(decTree)
 
+# Evaluate fitting using model summary
 # View model's summary
 summary(decTree)
 
-# Evaluate performance using Confusion Matrix
-cm = table(test_set[, 7], y_pred)
-
-# More detailed confusion matrix
+# Evaluate model prediction error using confusion matrix
+cm = as.matrix(table(test_set[, 7], y_pred))
 library(gmodels)
 gmodels::CrossTable(test_set$car,
            y_pred,
@@ -79,7 +79,12 @@ gmodels::CrossTable(test_set$car,
            prop.r     = FALSE,
            dnn = c('actual default', 'predicted default'))
 
-# Produce learning curves to evaluate our splitting policy
+# Evaluate model prediction error using precision-recall and F1 score
+precision = diag(cm) / colSums(cm)
+recall = diag(cm) / rowSums(cm)
+f1_score = ifelse(precision + recall == 0, 0, 2 * precision * recall / (precision + recall))
+
+# Evaluate splitting rule using learning curve
 library(mlr)
 dataset.task = makeClassifTask(id = "car", data = dataset, target = "car")
 learningCurve = generateLearningCurveData(
@@ -91,7 +96,7 @@ learningCurve = generateLearningCurveData(
   show.info = TRUE)
 plotLearningCurve(learningCurve, facet = 'learner')
 
-# Predict choosen decision using model
+# Predict user decision using model
 decision = list(persons=4, buying='med', maint='low',
                 lug_boots='med', safety='med', doors=4)
 # Since doors and persons are categorial, then we need transform it into factor
