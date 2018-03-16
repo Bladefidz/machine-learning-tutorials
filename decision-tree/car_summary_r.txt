@@ -1,0 +1,79 @@
+safety = low: unacc (435)
+safety in {high,med}:
+:...persons = 2: unacc (279)
+    persons in {4,more}:
+    :...buying in {high,vhigh}:
+        :...maint = vhigh: unacc (74)
+        :   maint = high:
+        :   :...buying = vhigh: unacc (41)
+        :   :   buying = high:
+        :   :   :...safety = high: acc (20/1)
+        :   :       safety = med:
+        :   :       :...lug_boots in {big,med}: acc (10/3)
+        :   :           lug_boots = small: unacc (6)
+        :   maint in {low,med}:
+        :   :...safety = high: acc (68/2)
+        :       safety = med:
+        :       :...lug_boots = big: acc (24)
+        :           lug_boots = small: unacc (24)
+        :           lug_boots = med:
+        :           :...doors = 2: unacc (6)
+        :               doors in {4,5more}: acc (12)
+        :               doors = 3:
+        :               :...persons = 4: unacc (3)
+        :                   persons = more: acc (4)
+        buying in {low,med}:
+        :...maint in {high,vhigh}:
+            :...safety = med:
+            :   :...lug_boots in {big,med}: acc (50/6)
+            :   :   lug_boots = small:
+            :   :   :...maint = vhigh: unacc (14)
+            :   :       maint = high:
+            :   :       :...buying = low: acc (5/1)
+            :   :           buying = med: unacc (5)
+            :   safety = high:
+            :   :...buying = med: acc (38/1)
+            :       buying = low:
+            :       :...maint = vhigh: acc (19)
+            :           maint = high:
+            :           :...lug_boots = big: vgood (4)
+            :               lug_boots = small: acc (7/1)
+            :               lug_boots = med:
+            :               :...doors = 2: acc (2)
+            :                   doors in {3,4,5more}: vgood (4)
+            maint in {low,med}:
+            :...safety = high:
+                :...lug_boots in {big,med}:
+                :   :...lug_boots = big: vgood (25)
+                :   :   lug_boots = med:
+                :   :   :...doors in {4,5more}: vgood (12)
+                :   :       doors = 2:
+                :   :       :...buying = low: good (2)
+                :   :       :   buying = med: acc (3/1)
+                :   :       doors = 3:
+                :   :       :...persons = 4: good (3/1)
+                :   :           persons = more: vgood (4)
+                :   lug_boots = small:
+                :   :...doors = 2:
+                :       :...persons = 4: good (2)
+                :       :   persons = more: unacc (4)
+                :       doors in {3,4,5more}:
+                :       :...maint = low: good (11)
+                :           maint = med:
+                :           :...buying = low: good (4)
+                :               buying = med: acc (2)
+                safety = med:
+                :...lug_boots = small:
+                    :...persons = 4: acc (12)
+                    :   persons = more:
+                    :   :...doors = 2: unacc (2)
+                    :       doors in {3,4,5more}: acc (7)
+                    lug_boots in {big,med}:
+                    :...maint = med:
+                        :...buying = low: good (13/3)
+                        :   buying = med: acc (13)
+                        maint = low:
+                        :...lug_boots = big: good (13)
+                            lug_boots = med:
+                            :...doors in {2,3}: acc (5/1)
+                                doors in {4,5more}: good (6)
