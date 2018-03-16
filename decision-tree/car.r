@@ -90,3 +90,12 @@ learningCurve = generateLearningCurveData(
   measures = list(setAggregation(acc, train.mean), setAggregation(acc, test.mean)),
   show.info = TRUE)
 plotLearningCurve(learningCurve, facet = 'learner')
+
+# Predict choosen decision using model
+decision = list(persons=4, buying='med', maint='low',
+                lug_boots='med', safety='med', doors=4)
+# Since doors and persons are categorial, then we need transform it into factor
+decision$doors = factor(decision$doors, levels = c(2, 3, 4, '5more'))
+decision$persons = factor(decision$persons, levels = c(2, 4, 'more'))
+pred_dec = predict(decTree, newdata = decision, type = 'class')
+pred_dec

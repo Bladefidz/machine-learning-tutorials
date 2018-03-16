@@ -1,0 +1,7 @@
+(vgood 24) -> car has capacity 4 or more persons, low or medium buying pring, low or medium maintenance price, high safety, and has big luggage boots.
+(vgood 14/3) -> car has capacity 4 or more persons, high safety, low buying price, high maintenance price, and medium or big luggage boots.
+(good 14) -> car has capacity 4 or more persons, low or medium buying price, medium safety, low maintenance price and big luggage boots.
+(good 12/3) car has capacity 4 or more persons, medium safety, has medium or big luggage boots, medium maintenance price and low buying price.
+(acc 51) -> car has capacity 4 or more persons, medium or high safety, high or very high buying price, low or medium maintenance price and big luggage boots.
+(unacc 77) -> car has capacity of 2 persons, medium or high safety, very high maintenance price.
+(unacc 35) -> car has capacity of 2 persons, high and very high buying price, low or medium or high maintenance price, small luggage boots and medium safety.
