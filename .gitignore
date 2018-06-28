@@ -99,3 +99,13 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Dolphin
+.directory
+
+# Editors
+.idea
+.vscode
+
+# Git
+.gitmodules
