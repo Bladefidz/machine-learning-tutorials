@@ -1,2 +1,2 @@
 # machine-learning-tutorials
-Easy machine learning tutorial!
+Easy and understandable Machine Learning tutorial! You'll love it.
