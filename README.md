@@ -1,2 +1,2 @@
-# machine-learning-tutorials
-Easy machine learning tutorial!
+# Machine-Learning-Tutorials
+Way of easy to learn machine learning !!
